@@ -2,30 +2,29 @@ angular.module("pokemonApp", ["ngRoute"])
     .config(config)
     .run(run);
 
-run.$inject = ["$rootScope", "$location", "usuarioService"];
+run.$inject = ["$rootScope", "$location"];
 config.$inject = ["$routeProvider"];
 
 function config($routeProvider) {
     $routeProvider.
     when("/login", {
-        templateUrl: "/app/pages/login.html",
-        controller: "loginController"
+        templateUrl: "./app/pages/login/login.html"
     }).
-    when("/listar", {
-        templateUrl: "/app/pages/listar.html"
+    when("/pokemon/listar", {
+        templateUrl: "./app/pages/pokemon/listar.html"
     }).
-    when("/cadastrar", {
-        templateUrl: "/app/pages/cadastrar.html",
+    when("/pokemon/cadastrar", {
+        templateUrl: "./app/pages/pokemon/cadastrar.html",
         controller: "cadastrarPokemonController as vm"
     }).
-    when("/cadastrarUsuario", {
-        templateUrl: "/app/pages/cadastrarUsuario.html",
-        controller: "cadastrarUsuarioController as vm"
-    })
-    .
-    when("/listarUsuario", {
-        templateUrl: "/app/pages/listarUsuarios.html",
-        controller: "listarUsuariosController as vm"
+    when("/treinador/listar", {
+        templateUrl: "./app/pages/treinador/listar.html"
+    }).
+    when("/treinador/cadastrar", {
+        templateUrl: "./app/pages/treinador/cadastrar.html"
+    }).
+    when("/home", {
+        templateUrl: "./app/pages/home.html"
     })
     .otherwise({
         redirectTo: "/login"
@@ -33,15 +32,12 @@ function config($routeProvider) {
 
 }
 
-function run($rootScope, $location, usuarioService) {
-    $rootScope.$on("$routeChangeStart", function(evt, route) {
-        if (route.originalPath !== "/login" && route.originalPath !== "/cadastrarUsuario") {
-            if (!usuarioService.usuario) {
+function run($rootScope, $location) {
+    /*$rootScope.$on("$routeChangeStart", function(evt, route) {
+        if (route.originalPath !== "/login") {
+            if (!$rootScope.usuario) {
                 $location.path("/login");
-                console.log("sessao null");
-            }else{
-                console.log("app.runn");
             }
         }
-    });
+    });*/
 }

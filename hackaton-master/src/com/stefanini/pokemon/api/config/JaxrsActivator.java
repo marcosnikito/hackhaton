@@ -7,6 +7,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import com.stefanini.pokemon.api.LoginApi;
+import com.stefanini.pokemon.api.PokemonApi;
 import com.stefanini.pokemon.api.UsuarioApi;
 
 @ApplicationPath("/rest")
@@ -17,6 +18,8 @@ public class JaxrsActivator extends Application {
 	public JaxrsActivator() {
 		classes.add(LoginApi.class);
 		classes.add(UsuarioApi.class);
+		classes.add(PokemonApi.class);
+		
 	}
 	
 	@Override

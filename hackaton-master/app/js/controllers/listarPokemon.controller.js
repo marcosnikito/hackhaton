@@ -1,56 +1,54 @@
         angular.module("pokemonApp")
         .controller("listarPokemonController", listarPokemonController);
 
-        listarPokemonController.$inject = ['$scope', "$rootScope", "$location", "pokemonService","usuarioService"];
+        listarPokemonController.$inject = ['$scope', "$rootScope", "$location", "pokemonService"];
 
-        function listarPokemonController($scope, $rootScope, $location, pokemonService, usuarioService) {
-            $scope.service = pokemonService;
-            $scope.pokemonsUsuario = null;
-            $scope.pokemonsUsuarioFunc = function(){  
-            $scope.pokemonsUsuario = usuarioService.listaUsuariosPokemons.filter(function(pokemonItem){
-                if(usuarioService.usuario.idUser == pokemonItem.treinador){
-                    return pokemonItem;
-                }
-            });
-            };
-            $scope.pokemonsUsuarioFunc();
-            console.log($scope.pokemonsUsuario);
-            $scope.mensagemPokemon = null;
-            $scope.irTelaCadastrar = function() {
-                $location.path("/cadastrar");
+        function listarPokemonController($scope, $rootScope, $location, pokemonService) {
+            var self = this;
+            self.service = pokemonService;
+            self.idSelecionado = null;
+
+            self.init = function() {
+                self.listar();
             };
 
-            $scope.editar = function(pokemon) {
-                $scope.service.pokemon = pokemon;
-                $scope.irTelaCadastrar();
+            self.irTelaCadastrar = function() {
+                $location.path("/pokemon/cadastrar");
             };
 
-            $scope.excluir = function(index) {
-                $scope.service.listaPokemons.splice(index, 1);
+            self.editar = function(pokemon) {
+                self.service.pokemon = pokemon;
+                self.irTelaCadastrar();
             };
-            $scope.capturar = function(pokemon){
-                var pokemonCapturado = pokemon;
-                pokemonCapturado.treinador = usuarioService.usuario.idUser;
-                console.log(pokemonCapturado);
-                if(pokemon){
-                    var pokemonCap = usuarioService.listaUsuariosPokemons.filter(function(pokemonItem) {
-                        if (pokemonItem.nome === pokemon.nome && pokemonItem.treinador === pokemon.treinador) {
-                                return pokemonItem;                            
-                        }
+
+            self.excluir = function(id) {
+                self.service.excluir(id)
+                .then(function(response) {
+                    console.log("Excluido com sucesso");
+                    self.listar();
+                }, function(error) {
+                    console.log(error);
+                });
+
+                self.idSelecionado = null;
+            };
+
+            self.obter = function(id) {
+                self.service.obter(id)
+                .then(function(response) {
+                    self.pokemon = response.data;
+                }, function(error) {
+                    console.log(error);
+                });
+            };
+
+            self.listar = function() {
+                self.service.listar()
+                    .then(function(response) {
+                        self.service.listaPokemons = response.data;
+                    }, function(error) {
+                        console.log("Retornou erro");
                     });
-                    
-                    if(pokemonCap.length){
-                        $scope.pokemonsUsuarioFunc();
-                        $scope.mensagemPokemon = "Voce Ja capturou este pokemon, tente outro!";
-                    }else{                        
-                        usuarioService.listaUsuariosPokemons.push(pokemonCapturado);
-                        $scope.mensagemPokemon = pokemon.nome+" capturado com sucesso!";
-                        $scope.pokemonsUsuarioFunc();
-                    }
-                }  
-            };
-            $scope.irTelaListarUsuarios = function(){
-                $location.path("/listarUsuario");
             };
             
         }

@@ -52,6 +52,20 @@ module.exports = function(grunt) {
                     "index.html"
                 ],
                 dest: "dist"
+            },
+            devWindows: {
+                expand: true,
+                src: [
+                    nodeModules + "angular/angular.min.js",
+                    nodeModules + "bootstrap/dist/css/bootstrap.min.css",
+                    nodeModules + "bootstrap/dist/js/bootstrap.min.js",
+                    nodeModules + "jquery/dist/jquery.min.js",
+                    nodeModules + "popper.js/dist/popper.min.js",
+                    nodeModules + "angular-route/angular-route.min.js",
+                    "app/**",
+                    "index.html"
+                ],
+                dest: "WebContent"
             }
         },
         clean: {
@@ -66,7 +80,7 @@ module.exports = function(grunt) {
                 curly: true,
                 asi: false
             },
-            all: ["app/js/**/*.js"]
+            all: ["app/js/**/*.js", "!app/js/assets/popper.mim.js"]
         },
         connect: {
             server: {

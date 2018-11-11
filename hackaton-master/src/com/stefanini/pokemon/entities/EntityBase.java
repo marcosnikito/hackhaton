@@ -1,5 +1,7 @@
 package com.stefanini.pokemon.entities;
 
-public class EntityBase {
+import java.io.Serializable;
+
+public class EntityBase implements Serializable {
 
 }

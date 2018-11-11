@@ -4,28 +4,34 @@
         cadastrarPokemonController.$inject = ['$scope', "$rootScope", "$location", "pokemonService"];
 
         function cadastrarPokemonController($scope, $rootScope, $location, pokemonService) {
-            $scope.contadorId = 0;
-            $scope.service = pokemonService;
-            $scope.pokemon = $scope.service.pokemon;
-            
-            $scope.inserir = function(pokemon) {
+            var self = this;
+
+            self.contadorId = 2;
+            self.service = pokemonService;
+            self.pokemon = self.service.pokemon;
+    
+            self.inserir = function(pokemon) {
                 if (pokemon.id) {
-                    var pokemonAlterado = $scope.service.listaPokemons.filter(function(pokemonItem) {
-                        if (pokemonItem.id === pokemon.id) {
-                            return pokemonItem;
-                        }
+                    
+                    self.service.alterar(pokemon)
+                    .then(function(response) {
+                        console.log(response.data);
+                        
+                    }, function(error) {
+                        console.log(error);
                     });
                     
-                    var index = $scope.service.listaPokemons.indexOf(pokemonAlterado[0]);
-                    $scope.service.listaPokemons.splice(index, 1, pokemon);
-                
                 } else {
-                    pokemon.id = ++$scope.contadorId;
-                    $scope.service.listaPokemons.push(angular.copy(pokemon));
+                    self.service.cadastrar(pokemon)
+                    .then(function(response) {
+                        console.log(response.data);
+                    }, function(error) {
+                        console.log(error);
+                    });
                 }
 
-                $scope.pokemon = {};
-                $scope.service.pokemon = {};
+                self.pokemon = {};
+                self.service.pokemon = {};
                 $location.path("/listar");
             };
 

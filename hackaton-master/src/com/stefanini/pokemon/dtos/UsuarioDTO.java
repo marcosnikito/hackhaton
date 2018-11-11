@@ -2,9 +2,6 @@ package com.stefanini.pokemon.dtos;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.stefanini.pokemon.entities.TipoPessoa;
-
 public class UsuarioDTO implements Serializable {
 
 	/**
@@ -16,15 +13,6 @@ public class UsuarioDTO implements Serializable {
 	private String email;
 	private String senha;
 	
-	private TipoPessoa tipoPessoa;
-	
-	
-	public TipoPessoa getTipoPessoa() {
-		return tipoPessoa;
-	}
-	public void setTipoPessoa(TipoPessoa tipoPessoa) {
-		this.tipoPessoa = tipoPessoa;
-	}
 	public Long getId() {
 		return id;
 	}

@@ -1,0 +1,13 @@
+<div class="row" ng-controller="cadastrarTreinadorController as vm" ng-init="isEdita()">
+    <form name="formCadastrar" ng-submit="vm.inserir(treinador)">
+        <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control" ng-required="true" ng-model="vm.treinador.nome">
+        </div>
+        <div class="form-group">
+            <label>Senha:</label>
+            <input type="password" class="form-control" ng-required="true" ng-model="vm.treinador.senha">
+        </div>
+        <button class="btn btn-primary" ng-disabled="formCadastrar.$invalid" type="submit">Inserir</button>
+    </form>
+</div>

@@ -1,5 +1,6 @@
 .container {
     margin-top: 10%;
+    width: 800px !important;
 }
 
 .tCenter {
@@ -16,12 +17,7 @@
 .ng-invalid-required input {
     border: 1px solid #ff0000;
 }
-.my_pokemons{
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-.listaPokemon{
-	width: 800px !important;
-	margin: 0 auto;
+
+.card-body-h200 {
+    height: 200px;
 }
