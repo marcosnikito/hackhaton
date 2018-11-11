@@ -1,0 +1,40 @@
+
+<div class="container">
+	<div class="row">
+		<div class="container-fluid">
+		<form name="formLogin">
+			<div class="form-row">
+				<label for="usuario">Usuario:<br>
+					<input type="text" name="usuario" id="usuario" ng-model="usuarioLogin.usuario">
+				</label>
+			</div>
+			<div class="form-row">
+				<label for="senha">Senha:<br>
+					<input type="current-password" name="senha" id="senha" ng-model="usuarioLogin.senha">
+				</label>
+			</div>
+			<div class="form-row"> 
+				<button class="btn btn-outline-primary" type="button" ng-click="logar(usuarioLogin)" ng-disabled="!usuario && usuario.length <3 ||!senha && senha.length <3">Entrar</button>
+					<button type="button" class="btn btn-outline-secondary" ng-click="irTelaCadastrarUsuario()" style="margin-left: 20px;">Cadastrar</button>
+			</div>
+		</form>
+	</div>
+	<div class="container-fluid">
+		<br>
+		<div class="row" ng-show="mensagemLogin">
+			{{mensagemLogin}}
+		</div>
+		<br>
+		<div class="row">
+			Usuarios cadastrados
+		</div>
+		<div class="row">
+		<ul>
+			<li ng-repeat="usuario in listaDeUsuarios">
+				{{usuario.nome}}
+			</li>
+		</ul>
+	</div>
+</div>
+	</div>
+</div>

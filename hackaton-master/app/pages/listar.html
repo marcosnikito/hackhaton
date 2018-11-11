@@ -1,0 +1,42 @@
+<div class="row" ng-controller="listarPokemonController as vm">
+    <div class="listaPokemon">
+        <table class="table table-striped">
+            <thead>
+                <th class="tCenter">#</th>
+                <th class="tLeft">Nome</th>
+                <th class="tCenter">Tipo</th>
+                <th class="tRight">Ação</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pokemon in service.listaPokemons track by $index">
+                    <td class="tCenter">{{pokemon.id}}</td>
+                    <td class="tLeft">{{pokemon.nome}}</td>
+                    <td class="tCenter">{{pokemon.tipo.descricao}}</td>
+                    <td class="tRight">
+                        <button class="btn btn-danger" ng-click="excluir($index)">X</button>
+                        <button class="btn btn-success" ng-click="editar(pokemon)">✏️</button>
+                        <button class="btn btn-success" ng-click="capturar(pokemon)">cap</button>
+                    </td>
+                </tr>
+                <tr ng-show="!service.listaPokemons.length && !acaoCadastrar" class="tCenter">
+                    <td colspan="4">
+                        Nenhum Pokemon cadastrado!
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row container-fluid" ng-show="mensagemPokemon">
+            {{mensagemPokemon}}
+        </div>
+        <div class="my_pokemons">
+            <h6>Meus pokemons</h6>
+            <ul>
+                <li ng-repeat="meuPoke in pokemonsUsuario">
+                    {{meuPoke.nome}}
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-outline-primary" ng-click="irTelaCadastrar()">[+] Novo Pokemon</button>
+        <button class="btn btn-outline-warning" ng-click="irTelaListarUsuarios()">Ver treinadores</button>
+        </div>
+    </div>

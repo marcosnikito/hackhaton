@@ -1,0 +1,22 @@
+<div class="row container-fluid" ng-controller="listarUsuariosController">
+<div class="row container-fluid">
+    <div class="row"><h3>Treinadores pokemons</h3></div>
+    <div class="row container-fluid">
+    <div class="col-lg-4" ng-repeat="usuario in listaUsuarios">
+        <ul>
+            <li>
+                {{usuario.nome}}
+            </li>
+            <li style="list-style: none; color: #999999;">
+                Pokemons
+                <ul>
+                   <li ng-repeat="pokemon in listaUsuariosPokemons">
+                       <span style="margin-left: 5px;">{{pokemon.nome}}</span>
+                   </li> 
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+</div>

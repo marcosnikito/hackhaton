@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+		<form name="formLogin">
+			<div class="form-row">
+				<label for="usuario">Nome:<br>
+					<input type="text" name="usuario" id="usuario" ng-model="usuarioCadastro.nome">
+				</label>
+			</div>
+			<div class="form-row">
+				<label for="usuario">Usuario:<br>
+					<input type="text" name="usuario" id="usuario" ng-model="usuarioCadastro.usuario">
+				</label>
+			</div>
+			<div class="form-row">
+				<label for="senha">Senha:<br>
+					<input type="current-password" name="senha" id="senha" ng-model="usuarioCadastro.senha">
+				</label>
+			</div>
+			<div class="form-row"> 
+				<button class="btn btn-outline-primary" type="button" ng-click="cadatarUsuario(usuarioCadastro)" 
+				ng-disabled="!nome && usuario.length < 5 ||!usuario && usuario.length <3 ||!senha && senha.length <3">Cadastrar</button>
+					<button type="button" class="btn btn-outline-secondary" ng-click="irLobby()" style="margin-left: 20px;">Cancelar</button>
+			</div>
+		</form>
+	</div>
+</div>

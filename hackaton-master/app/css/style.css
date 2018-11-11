@@ -1,0 +1,27 @@
+.container {
+    margin-top: 10%;
+}
+
+.tCenter {
+    text-align: center;
+}
+
+.tLeft {
+    text-align: left;
+}
+
+.tRight {
+    text-align: right;
+}
+.ng-invalid-required input {
+    border: 1px solid #ff0000;
+}
+.my_pokemons{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.listaPokemon{
+	width: 800px !important;
+	margin: 0 auto;
+}
